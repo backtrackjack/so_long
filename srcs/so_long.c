@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:58:25 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/08 15:33:57 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:00:33 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	main(int ac, char **av)
 		game = init_game(av[1]);
 	if (check_map(game->map))
 		exit_w_msg(1, "Map not surrounded by walls", game);
-	mlx_hook(game->mlx_win, 17, 0, (void *)exit, 0);
+	// hook_the_things();
+	// display_the_thing();
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->spr[0]->img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->spr[1]->img, 0, 32);
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->spr[2]->img, 0, 32);
 	mlx_loop(game->mlx);
 	return (0);
 }
