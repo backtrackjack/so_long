@@ -51,6 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+*.swp
 .DS_Store
 so_long
 valgrind-out.txt
