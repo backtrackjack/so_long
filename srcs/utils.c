@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:35 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/08 15:31:16 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:56:35 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	free_game(t_game *game)
 
 void	exit_w_msg(int status, char *msg, t_game *game)
 {
-	write(1, msg, ft_strlen(msg));
+	int	i;
+
+	i = write(1, msg, ft_strlen(msg));
+	i++;
 	if (game)
 	{
 		free_game(game);
