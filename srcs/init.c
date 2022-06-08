@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:50 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/08 13:13:08 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:18:10 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	sprinit(t_game *x)
 	}
 	s[0]->img = f(x->mlx, "img/wall.XPM", &s[0]->width, &s[0]->height);
 	s[1]->img = f(x->mlx, "img/exit.XPM", &s[1]->width, &s[1]->height);
-	s[2]->img = f(x->mlx, "img/exit.XPM", &s[2]->width, &s[2]->height);
-	s[3]->img = f(x->mlx, "img/exit.XPM", &s[3]->width, &s[3]->height);
-	s[4]->img = f(x->mlx, "img/exit.XPM", &s[4]->width, &s[4]->height);
+	s[2]->img = f(x->mlx, "img/item.XPM", &s[2]->width, &s[2]->height);
+	s[3]->img = f(x->mlx, "img/player.XPM", &s[3]->width, &s[3]->height);
+	s[4]->img = f(x->mlx, "img/empty.XPM", &s[4]->width, &s[4]->height);
 }
 
 t_game	*init_game(char *map_name)
