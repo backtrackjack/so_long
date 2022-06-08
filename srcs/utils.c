@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsellars <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:35 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/08 13:11:40 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:14:25 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,20 @@ void	exit_w_msg(int status, char *msg, t_game *game)
 	game = NULL;
 	exit(status);
 }
+
+// int		check_map(t_map *map)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	x = 0;
+// 	y = 0;
+// 	while (x < map->width)
+// 	{
+// 		if (map->layout[x][map->height-1] != '1'
+// 			|| map->layout[x][0] != '1')
+
+
+// 	}
+// 	return (0);
+// }

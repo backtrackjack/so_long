@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:50 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/08 13:18:10 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:15:05 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ char	*nullify_nl(char *str)
 			str[i] = '\0';
 	}
 	return (str);
+}
+
+char	*fl_strjoin(char *s1, char *s2)
+{
+	char	*temp;
+
+	temp = ft_strjoin(s1, s2);
+	free(s1);
+	return (temp);
 }
 
 void	set_map(char *path, t_game *game)
@@ -84,6 +93,7 @@ void	sprinit(t_game *x)
 t_game	*init_game(char *map_name)
 {
 	t_game	*game;
+	char	*path;
 	void	*mlx;
 	void	*mlx_win;
 
@@ -91,7 +101,9 @@ t_game	*init_game(char *map_name)
 	if (game == NULL)
 		exit_w_msg(1, "Could not allocate game obj", game);
 	ft_bzero(game, sizeof(t_game));
-	set_map(ft_strjoin(ft_strjoin("maps/", map_name), ".ber"), game);
+	path = fl_strjoin(ft_strjoin("maps/", map_name), ".ber");
+	set_map(path, game);
+	free(path);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx,
 			game->map->width * 32, game->map->height * 32, map_name);
