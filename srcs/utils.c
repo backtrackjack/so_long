@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:35 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/08 15:14:25 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:31:16 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,34 @@ void	free_game(t_game *game)
 void	exit_w_msg(int status, char *msg, t_game *game)
 {
 	write(1, msg, ft_strlen(msg));
-	free_game(game);
-	game = NULL;
+	if (game)
+	{
+		free_game(game);
+		game = NULL;
+	}
 	exit(status);
 }
 
-// int		check_map(t_map *map)
-// {
-// 	int	x;
-// 	int	y;
+int		check_map(t_map *map)
+{
+	int	x;
+	int	y;
 
-// 	x = 0;
-// 	y = 0;
-// 	while (x < map->width)
-// 	{
-// 		if (map->layout[x][map->height-1] != '1'
-// 			|| map->layout[x][0] != '1')
-
-
-// 	}
-// 	return (0);
-// }
+	x = 0;
+	y = 0;
+	while (x < map->width)
+	{
+		if (map->layout[map->height - 1][x] != '1'
+			|| map->layout[0][x] != '1')
+			return (1);
+		x++;
+	}
+	while (y < map->height)
+	{
+		if (map->layout[y][map->width - 1] != '1'
+			|| map->layout[y][0] != '1')
+			return (1);
+		y++;
+	}
+	return (0);
+}

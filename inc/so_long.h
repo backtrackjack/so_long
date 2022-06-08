@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 00:10:55 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/08 13:10:48 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:31:56 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	ft_bzero(void *s, size_t n);
 void	free_game(t_game *game);
 void	exit_w_msg(int status, char *msg, t_game *game);
 t_game	*init_game(char *map_name);
+int		check_map(t_map *map);
 
 #endif
