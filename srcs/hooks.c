@@ -14,69 +14,97 @@
 //  s 115
 //  d 100
 //  esc 65307
-/*
- *t_pos	get_p_pos(char **map)
- *{
- *    int		i;
- *    int		j;
- *    t_pos	pos;
- *    i = 0;
- *    while (map[i])
- *    {
- *        j = 0;
- *        while (map[i][j])
- *        {
- *            if (map[i][j] == 'P')
- *            {
- *                pos.x = j;
- *                pos.y = i;
- *                return (pos);
- *            }
- *            j++;
- *        }
- *    }
- *}
- */
+t_pos	get_p_pos(char **map)
+{
+	int		i;
+	int		j;
+	t_pos	pos;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'P')
+			{
+				pos.x = j;
+				pos.y = i;
+				return (pos);
+			}
+			j++;
+		}
+	}
+	return (NULL);
+}
 
-/*
- *int	valid(t_game g, char c)
- *{
- *    if (c == '0')
- *        return (1);
- *    if (c == 'E')
- *        [>finish_game(g);<]
- *    if (c == 'C')
- *        [>collect(g);<]
- *    return (0);
- *}
- */
+void	pos_swap(t_game *g, t_pos pos, char dir)
+{
+	char	*tile;
+	char	temp;
 
-/*
- *int	check_tile(t_game *g, t_pos pos, char dir)
- *{
- *    if (dir == 'u' && valid(g, g->map->layout[pos.y + 1][pos.x]))
- *
- *    
- *}
- */
+	if (dir == 'u')
+		tile = &g->map->layout[pos.y + 1][pos.x];
+	if (dir == 'l')
+		tile = &g->map->layout[pos.y][pos.x - 1];
+	if (dir == 'd')
+		tile = &g->map->layout[pos.y - 1][pos.x]
+	if (dir == 'r')
+		tile = &g->map->layout[pos.y][pos.x + 1];
+	
+	temp = g->map->layout[pos.y][pos.x];
+	*tile = g->map->layout[pos.y][pos.x];
+	tem
+}
 
-/*
- *void	move(t_game *g, int dir)
- *{
- *    t_pos pos;
- *
- *    pos = get_p_pos(g->map->layout);
- *    if (dir == 1 && check_tile(g, pos, 'u'))
- *        pos_swap(g, pos, 'u');
- *    if (dir == 2 && check_tile(g, pos, 'l'))
- *        pos_swap(g, pos, 'l');
- *    if (dir == 3 && check_tile(g, pos, 'd'))
- *        pos_swap(g, pos, 'd');
- *    if (dir == 4 && check_tile(g, pos, 'r'))
- *        pos_swap(g, pos, 'r');
- *    display_the_thing(g, mlx_put_image_to_window);
- *}
- */
+int	collect(t_game *g, t_pos t)
+{
+	int	i;
+	i = write(1, "\a", 1);
+	mlx_put_image_to_window(g->mlx, g->mlx_win,
+			g->spr[4]->img, t.x * 32, t.y * 32);
+	g->score++;
+	return (1);
+}
+
+int	check_tile(t_game *g, t_pos pos, char dir)
+{
+	t_pos	t;
+	char	**map;
+
+	map = g->map->layout;
+	t = pos;
+	if (dir == 'u')
+		t.y++;
+	else if (dir == 'l')
+		t.x--;
+	else if (dir == 'd')
+		t.y--;
+	else
+		t.x++;
+	if (map[t.y][t.x] == '0')
+		return (1);
+	if (map[t.y][t.x] == 'E')
+		finish_game(g);
+	if (map[t.y][t.x] == 'C')
+		return (collect(g, t));
+	return (0);
+}
+
+void	move(t_game *g, char dir)
+{
+	t_pos pos;
+
+	pos = get_p_pos(g->map->layout);
+	if (dir == 'u' && check_tile(g, pos, 'u'))
+		pos_swap(g, pos, 'u');
+	if (dir == 'l' && check_tile(g, pos, 'l'))
+		pos_swap(g, pos, 'l');
+	if (dir == 'd' && check_tile(g, pos, 'd'))
+		pos_swap(g, pos, 'd');
+	if (dir == 'r' && check_tile(g, pos, 'r'))
+		pos_swap(g, pos, 'r');
+	display_the_thing(g, mlx_put_image_to_window);
+}
 
 void	*close_game(t_game *g)
 {
@@ -86,19 +114,17 @@ void	*close_game(t_game *g)
 
 int handle(int keycode, t_game *g)
 {
-	printf("%d\n", keycode);
-	/*
-	 *if (keycode == W)
-	 *    move(g, 1);
-	 *if (keycode == A)
-	 *    move(g, 2);
-	 *if (keycode == S)
-	 *    move(g, 3);
-	 *if (keycode == D)
-	 *    move(g, 4);
-	 *if (keycode == ESC)
-	 *    w_handle(g);
-	 */
+	write(1, ft_itoa(keycode), ft_strlen(ft_itoa(keycode)));
+	if (keycode == W)
+		move(g, 'u');
+	if (keycode == A)
+		move(g, 'l');
+	if (keycode == S)
+		move(g, 'd');
+	if (keycode == D)
+		move(g, 'r'); 
+	if (keycode == ESC)
+		close_game(g);
 	return (g->map->height);
 }
 
