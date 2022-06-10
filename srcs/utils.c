@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:35 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/08 23:56:35 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:54:16 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	exit_w_msg(int status, char *msg, t_game *game)
 	if (game)
 	{
 		free_game(game);
+		game->mlx = NULL;
+		game->mlx_win = NULL;
 		game = NULL;
 	}
 	exit(status);

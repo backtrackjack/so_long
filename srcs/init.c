@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:50 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/09 16:22:35 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:43:55 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	sprinit(t_game *x)
 	f = mlx_xpm_file_to_image;
 	i = 0;
 	s = x->spr;
-	while (i < 6)
+	while (i < 5)
 	{
 		s[i] = malloc(sizeof(t_sprite));
 		if (s[i] == NULL)
@@ -88,6 +88,7 @@ void	sprinit(t_game *x)
 	s[2]->img = f(x->mlx, "img/item.XPM", &s[2]->width, &s[2]->height);
 	s[3]->img = f(x->mlx, "img/player.XPM", &s[3]->width, &s[3]->height);
 	s[4]->img = f(x->mlx, "img/empty.XPM", &s[4]->width, &s[4]->height);
+	s[5] = NULL;
 }
 
 t_game	*init_game(char *map_name)
