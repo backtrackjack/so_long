@@ -60,6 +60,7 @@ typedef struct s_game
 	void *mlx;
 	void *mlx_win;
 	t_sprite *spr[6];
+	int score;
 } t_game;
 
 int pos_eq(t_pos pos1, t_pos pos2);

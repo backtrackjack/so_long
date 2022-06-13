@@ -14,11 +14,13 @@
 //  s 115
 //  d 100
 //  esc 65307
-t_pos	get_p_pos(char **map)
+t_pos get_p_pos(char **map)
 {
-	int		i;
-	int		j;
-	t_pos	pos;
+	int i;
+	int j;
+	t_pos pos;
+	pos.x = -1;
+	pos.y = -1;
 	i = 0;
 	while (map[i])
 	{
@@ -34,42 +36,47 @@ t_pos	get_p_pos(char **map)
 			j++;
 		}
 	}
-	return (NULL);
+	return (pos);
 }
 
-void	pos_swap(t_game *g, t_pos pos, char dir)
+void finish_game(t_game *g)
 {
-	char	*tile;
-	char	temp;
+	exit_w_msg(1, "finished", g);
+}
+
+void pos_swap(t_game *g, t_pos pos, char dir)
+{
+	char *tile;
+	char temp = g->map->layout[pos.y][pos.x];
 
 	if (dir == 'u')
 		tile = &g->map->layout[pos.y + 1][pos.x];
 	if (dir == 'l')
 		tile = &g->map->layout[pos.y][pos.x - 1];
 	if (dir == 'd')
-		tile = &g->map->layout[pos.y - 1][pos.x]
-	if (dir == 'r')
+		tile = &g->map->layout[pos.y - 1][pos.x];
+	else
 		tile = &g->map->layout[pos.y][pos.x + 1];
-	
-	temp = g->map->layout[pos.y][pos.x];
-	*tile = g->map->layout[pos.y][pos.x];
-	tem
+
+	g->map->layout[pos.y][pos.x] = *tile;
+	*tile = temp;
 }
 
-int	collect(t_game *g, t_pos t)
+int collect(t_game *g, t_pos t)
 {
-	int	i;
+	int i;
 	i = write(1, "\a", 1);
+	i++;
 	mlx_put_image_to_window(g->mlx, g->mlx_win,
-			g->spr[4]->img, t.x * 32, t.y * 32);
+							g->spr[4]->img, t.x * 32, t.y * 32);
 	g->score++;
 	return (1);
 }
 
-int	check_tile(t_game *g, t_pos pos, char dir)
+int check_tile(t_game *g, t_pos pos, char dir)
 {
-	t_pos	t;
-	char	**map;
+	t_pos t;
+	char **map;
 
 	map = g->map->layout;
 	t = pos;
@@ -90,7 +97,7 @@ int	check_tile(t_game *g, t_pos pos, char dir)
 	return (0);
 }
 
-void	move(t_game *g, char dir)
+void move(t_game *g, char dir)
 {
 	t_pos pos;
 
@@ -106,7 +113,7 @@ void	move(t_game *g, char dir)
 	display_the_thing(g, mlx_put_image_to_window);
 }
 
-void	*close_game(t_game *g)
+void *close_game(t_game *g)
 {
 	exit_w_msg(1, "Exiting", g);
 	return (0);
@@ -114,7 +121,6 @@ void	*close_game(t_game *g)
 
 int handle(int keycode, t_game *g)
 {
-	write(1, ft_itoa(keycode), ft_strlen(ft_itoa(keycode)));
 	if (keycode == W)
 		move(g, 'u');
 	if (keycode == A)
@@ -122,7 +128,7 @@ int handle(int keycode, t_game *g)
 	if (keycode == S)
 		move(g, 'd');
 	if (keycode == D)
-		move(g, 'r'); 
+		move(g, 'r');
 	if (keycode == ESC)
 		close_game(g);
 	return (g->map->height);

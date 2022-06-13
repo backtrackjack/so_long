@@ -17,7 +17,7 @@ SOURCES = $(addprefix srcs/, $(SOURCE_FILES))
 OBJECTS = $(SOURCES:.c=.o)
 INCLUDES = inc
 CC = gcc
-CFLAGS = -g -I/usr/include -Wall -Werror -Wextra
+CFLAGS = -g -I/usr/include 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)

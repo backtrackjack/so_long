@@ -13,9 +13,9 @@
 #include "so_long.h"
 #include "get_next_line.h"
 
-char	*nullify_nl(char *str)
+char *nullify_nl(char *str)
 {
-	int	i;
+	int i;
 
 	if (!str)
 		return (NULL);
@@ -28,19 +28,19 @@ char	*nullify_nl(char *str)
 	return (str);
 }
 
-char	*fl_strjoin(char *s1, char *s2)
+char *fl_strjoin(char *s1, char *s2)
 {
-	char	*temp;
+	char *temp;
 
 	temp = ft_strjoin(s1, s2);
 	free(s1);
 	return (temp);
 }
 
-void	set_map(char *path, t_game *game)
+void set_map(char *path, t_game *game)
 {
-	char	**temp;
-	int		file;
+	char **temp;
+	int file;
 
 	game->map = malloc(sizeof(t_map));
 	if (!game->map)
@@ -56,9 +56,7 @@ void	set_map(char *path, t_game *game)
 	{
 		game->map->layout[game->map->height] = *temp++;
 		game->map->height++;
-		if (game->map->height - 1 != 0
-			&& ft_strlen(game->map->layout[game->map->height - 1])
-			!= game->map->width)
+		if (game->map->height - 1 != 0 && ft_strlen(game->map->layout[game->map->height - 1]) != game->map->width)
 			exit_w_msg(1, "Map is not rectangular", game);
 		game->map->width = ft_strlen(game->map->layout[game->map->height - 1]);
 		*temp = nullify_nl(get_next_line(file));
@@ -66,11 +64,11 @@ void	set_map(char *path, t_game *game)
 	close(file);
 }
 
-void	sprinit(t_game *x)
+void sprinit(t_game *x)
 {
-	t_sprite	**s;
-	int			i;
-	void		*(*f)(void *, char *, int *, int *);
+	t_sprite **s;
+	int i;
+	void *(*f)(void *, char *, int *, int *);
 
 	f = mlx_xpm_file_to_image;
 	i = 0;
@@ -91,12 +89,12 @@ void	sprinit(t_game *x)
 	s[5] = NULL;
 }
 
-t_game	*init_game(char *map_name)
+t_game *init_game(char *map_name)
 {
-	t_game	*game;
-	char	*path;
-	void	*mlx;
-	void	*mlx_win;
+	t_game *game;
+	char *path;
+	void *mlx;
+	void *mlx_win;
 
 	game = malloc(sizeof(t_game));
 	if (game == NULL)
@@ -107,8 +105,8 @@ t_game	*init_game(char *map_name)
 	free(path);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx,
-			game->map->width * 32, game->map->height * 32, map_name);
-	*game = (t_game){game->map, mlx, mlx_win, {NULL}};
+							 game->map->width * 32, game->map->height * 32, map_name);
+	*game = (t_game){game->map, mlx, mlx_win, {NULL}, 0};
 	sprinit(game);
 	return (game);
 }
