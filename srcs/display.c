@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:20:37 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/09 15:53:00 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:21:15 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,22 @@ void	display_the_thing(t_game *g, int (*f)(void*, void*, void*, int, int))
 				f(g->mlx, g->mlx_win, g->spr[4]->img, i[1] * 32, i[0] * 32);
 		}
 	}
+}
+
+void	display_moves(t_game *g)
+{
+	int		y;
+	int		i;
+	char	*str;
+	char	num[10];
+
+	i = 9;
+	while (i--)
+		num[i] = '\0';
+	ft_itoa(g->moves, num);
+	str = ft_strjoin("Moves: ", num);
+	y = g->map->height - 1;
+	mlx_string_put(g->mlx, g->mlx_win, 5, y * 35, 0x000000, str);
+	free (str);
+	str = NULL;
 }

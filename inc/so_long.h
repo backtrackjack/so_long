@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 00:10:55 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/09 16:42:41 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/13 14:48:04 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 #define D 100
 #define ESC 65307
 #else
-#define W 13
-#define A 0
-#define S 2
-#define D 1
+#define MOVE_UP 13
+#define MOVE_LEFT 0
+#define MOVE_DOWN 1
+#define MOVE_RIGHT 2
 #define ESC 53
 #endif
 typedef struct s_pos
@@ -60,7 +60,7 @@ typedef struct s_game
 	void *mlx;
 	void *mlx_win;
 	t_sprite *spr[6];
-	int score;
+	int	moves;
 } t_game;
 
 int pos_eq(t_pos pos1, t_pos pos2);
@@ -71,5 +71,7 @@ t_game *init_game(char *map_name);
 int check_map(t_map *map);
 void display_the_thing(t_game *g, int (*f)(void *, void *, void *, int, int));
 void hook_the_things(t_game *g);
+void	display_moves(t_game *game);
+void	ft_itoa(int n, char *s);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 13:50:37 by jsellars          #+#    #+#              #
-#    Updated: 2022/06/09 15:56:13 by jsellars         ###   ########.fr        #
+#    Updated: 2022/06/13 13:05:53 by jsellars         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SOURCES = $(addprefix srcs/, $(SOURCE_FILES))
 OBJECTS = $(SOURCES:.c=.o)
 INCLUDES = inc
 CC = gcc
-CFLAGS = -g -I/usr/include 
+CFLAGS = -g -I/usr/include -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJECTS)

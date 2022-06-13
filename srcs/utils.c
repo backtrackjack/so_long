@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:35 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/10 12:54:16 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:29:13 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,14 @@ int		check_map(t_map *map)
 		y++;
 	}
 	return (0);
+}
+
+void		ft_itoa(int n, char *s)
+{
+	char	*list;
+
+	list = "0123456789";
+	if (n >= 10)
+		ft_itoa(n / 10, s++);
+	*s = list[n % 10];
 }

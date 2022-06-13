@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:50 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/10 12:43:55 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/13 14:23:03 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ void set_map(char *path, t_game *game)
 
 	game->map = malloc(sizeof(t_map));
 	if (!game->map)
-		exit_w_msg(1, "Could not malloc map", game);
+		exit_w_msg(1, "Error\nCould not malloc map", game);
 	ft_bzero(game->map, sizeof(t_map));
 	game->map->height = 0;
 	temp = game->map->layout;
 	file = open(path, O_RDONLY);
 	if (file == -1)
-		exit_w_msg(1, "Invalid map name, try \"./so_long default\"", game);
+		exit_w_msg(1, "Error\nInvalid map name, try \"./so_long default\"", game);
 	*temp = nullify_nl(get_next_line(file));
 	while (*temp)
 	{
 		game->map->layout[game->map->height] = *temp++;
 		game->map->height++;
 		if (game->map->height - 1 != 0 && ft_strlen(game->map->layout[game->map->height - 1]) != game->map->width)
-			exit_w_msg(1, "Map is not rectangular", game);
+			exit_w_msg(1, "Error\nMap is not rectangular", game);
 		game->map->width = ft_strlen(game->map->layout[game->map->height - 1]);
 		*temp = nullify_nl(get_next_line(file));
 	}
@@ -77,7 +77,7 @@ void sprinit(t_game *x)
 	{
 		s[i] = malloc(sizeof(t_sprite));
 		if (s[i] == NULL)
-			exit_w_msg(1, "Could not allocate sprite", x);
+			exit_w_msg(1, "Error\nCould not allocate sprite", x);
 		ft_bzero(s[i], sizeof(t_sprite));
 		i++;
 	}
@@ -98,7 +98,7 @@ t_game *init_game(char *map_name)
 
 	game = malloc(sizeof(t_game));
 	if (game == NULL)
-		exit_w_msg(1, "Could not allocate game obj", game);
+		exit_w_msg(1, "Error\nCould not allocate game obj", game);
 	ft_bzero(game, sizeof(t_game));
 	path = fl_strjoin(ft_strjoin("maps/", map_name), ".ber");
 	set_map(path, game);
