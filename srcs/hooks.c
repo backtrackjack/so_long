@@ -42,6 +42,8 @@ t_pos get_p_pos(char **map)
 
 void finish_game(t_game *g)
 {
+	g->moves++;
+	display_moves(g);
 	exit_w_msg(1, "Finished", g);
 }
 
@@ -91,7 +93,7 @@ int check_tile(t_game *g, t_pos pos, char dir)
 		t.x++;
 	if (map[t.y][t.x] == '0')
 		return (1);
-	if (map[t.y][t.x] == 'E')
+	if (map[t.y][t.x] == 'E' && g->score == g->c_count)
 		finish_game(g);
 	if (map[t.y][t.x] == 'C')
 		return (collect(g, t));
