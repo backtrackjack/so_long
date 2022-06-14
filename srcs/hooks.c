@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:24:51 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/14 16:36:03 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:13:15 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	collect(t_game *g, t_pos t)
 	mlx_put_image_to_window(g->mlx, g->mlx_win,
 		g->spr[4]->img, t.x * 32, t.y * 32);
 	g->map->layout[t.y][t.x] = '0';
+	g->score++;
 	return (1);
 }
 

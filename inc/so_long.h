@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 00:10:55 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/14 16:39:06 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:36:37 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ void	move(t_game *g, char dir);
 void	finish_game(t_game *g);
 int		collect(t_game *g, t_pos t);
 int		check_tile(t_game *g, t_pos pos, char dir);
-
+void	get_c_count(t_game *g);
 #endif

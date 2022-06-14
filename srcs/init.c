@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:50 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/14 10:23:41 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:35:51 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ t_game	*init_game(char *map_name)
 			game->map->width * 32, game->map->height * 32, map_name);
 	*game = (t_game){game->map, mlx, mlx_win, {NULL}, 0, 0, 0};
 	sprinit(game);
+	get_c_count(game);
 	return (game);
 }
