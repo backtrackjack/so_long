@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/14 10:24:51 by jsellars          #+#    #+#             */
+/*   Updated: 2022/06/14 10:34:13 by jsellars         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include <stdio.h>
 
@@ -14,11 +26,12 @@
 //  s 115
 //  d 100
 //  esc 65307
-t_pos get_p_pos(char **map)
+t_pos	get_p_pos(char **map)
 {
-	int i;
-	int j;
-	t_pos pos;
+	int		i;
+	int		j;
+	t_pos	pos;
+
 	pos.x = -1;
 	pos.y = -1;
 	i = 0;
@@ -40,18 +53,19 @@ t_pos get_p_pos(char **map)
 	return (pos);
 }
 
-void finish_game(t_game *g)
+void	finish_game(t_game *g)
 {
 	g->moves++;
 	display_moves(g);
 	exit_w_msg(1, "Finished", g);
 }
 
-void pos_swap(t_game *g, t_pos pos, char dir)
+void	pos_swap(t_game *g, t_pos pos, char dir)
 {
-	char *tile;
-	char temp = g->map->layout[pos.y][pos.x];
+	char	*tile;
+	char	temp;
 
+	temp = g->map->layout[pos.y][pos.x];
 	if (dir == 'u')
 		tile = &g->map->layout[pos.y - 1][pos.x];
 	else if (dir == 'l')
@@ -65,21 +79,22 @@ void pos_swap(t_game *g, t_pos pos, char dir)
 	*tile = temp;
 }
 
-int collect(t_game *g, t_pos t)
+int	collect(t_game *g, t_pos t)
 {
-	int i;
+	int	i;
+
 	i = write(1, "\a", 1);
 	i++;
 	mlx_put_image_to_window(g->mlx, g->mlx_win,
-							g->spr[4]->img, t.x * 32, t.y * 32);
+		g->spr[4]->img, t.x * 32, t.y * 32);
 	g->map->layout[t.y][t.x] = '0';
 	return (1);
 }
 
-int check_tile(t_game *g, t_pos pos, char dir)
+int	check_tile(t_game *g, t_pos pos, char dir)
 {
-	t_pos t;
-	char **map;
+	t_pos	t;
+	char	**map;
 
 	map = g->map->layout;
 	t = pos;
@@ -100,9 +115,9 @@ int check_tile(t_game *g, t_pos pos, char dir)
 	return (0);
 }
 
-void move(t_game *g, char dir)
+void	move(t_game *g, char dir)
 {
-	t_pos pos;
+	t_pos	pos;
 
 	pos = get_p_pos(g->map->layout);
 	if (dir == 'u' && check_tile(g, pos, 'u'))
@@ -117,13 +132,13 @@ void move(t_game *g, char dir)
 	display_moves(g);
 }
 
-void *close_game(t_game *g)
+void	*close_game(t_game *g)
 {
 	exit_w_msg(1, "Exiting", g);
 	return (0);
 }
 
-int handle(int keycode, t_game *g)
+int	handle(int keycode, t_game *g)
 {
 	if (keycode == MOVE_UP)
 		move(g, 'u');
@@ -138,7 +153,7 @@ int handle(int keycode, t_game *g)
 	return (g->map->height);
 }
 
-void hook_the_things(t_game *g)
+void	hook_the_things(t_game *g)
 {
 	mlx_key_hook(g->mlx_win, handle, g);
 	mlx_hook(g->mlx_win, 17, 0L, (void *)close_game, g);

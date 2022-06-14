@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:35 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/13 15:29:13 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/14 10:24:35 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	exit_w_msg(int status, char *msg, t_game *game)
 	exit(status);
 }
 
-int		check_map(t_map *map)
+int	check_map(t_map *map)
 {
 	int	x;
 	int	y;
@@ -93,7 +93,7 @@ int		check_map(t_map *map)
 	return (0);
 }
 
-void		ft_itoa(int n, char *s)
+void	ft_itoa(int n, char *s)
 {
 	char	*list;
 
