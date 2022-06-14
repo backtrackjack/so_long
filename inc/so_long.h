@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 00:10:55 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/14 12:02:21 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/14 16:39:06 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,9 @@ void	display_the_thing(t_game *g,
 void	hook_the_things(t_game *g);
 void	display_moves(t_game *game);
 void	ft_itoa(int n, char *s);
+void	move(t_game *g, char dir);
+void	finish_game(t_game *g);
+int		collect(t_game *g, t_pos t);
+int		check_tile(t_game *g, t_pos pos, char dir);
 
 #endif

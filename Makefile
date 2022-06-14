@@ -6,13 +6,13 @@
 #    By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 13:50:37 by jsellars          #+#    #+#              #
-#    Updated: 2022/06/13 13:05:53 by jsellars         ###   ########.fr        #
+#    Updated: 2022/06/14 16:36:00 by jsellars         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 UNAME := $(shell uname)
-SOURCE_FILES = so_long.c get_next_line.c get_next_line_utils.c my_mlx.c utils.c init.c display.c hooks.c
+SOURCE_FILES = so_long.c get_next_line.c get_next_line_utils.c my_mlx.c utils.c init.c display.c hooks.c move.c
 SOURCES = $(addprefix srcs/, $(SOURCE_FILES))
 OBJECTS = $(SOURCES:.c=.o)
 INCLUDES = inc
