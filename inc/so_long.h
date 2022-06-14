@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 00:10:55 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/14 10:28:39 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/14 12:02:21 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include "get_next_line.h"
 # include "mlx.h"
 
-# define MAX_MAP_HEIGHT 75
-# define MAX_MAP_WIDTH 100
+# define MAX_MAP_HEIGHT 33
+# define MAX_MAP_WIDTH 60
 # if defined(__linux__)
-#  define W 119
-#  define A 97
-#  define S 115
-#  define D 100
+#  define MOVE_UP 119
+#  define MOVE_LEFT 97
+#  define MOVE_DOWN 115
+#  define MOVE_RIGHT 100
 #  define ESC 65307
 # else
 #  define MOVE_UP 13
