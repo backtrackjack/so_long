@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:11:35 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/14 19:33:10 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:25:09 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	free_game(t_game *game)
 		}
 		mlx_destroy_window(game->mlx, game->mlx_win);
 	}
-	free(game);
 }
 
 void	exit_w_msg(int status, char *msg, t_game *game)
@@ -64,6 +63,7 @@ void	exit_w_msg(int status, char *msg, t_game *game)
 		free_game(game);
 		game->mlx = NULL;
 		game->mlx_win = NULL;
+		free(game);
 		game = NULL;
 	}
 	exit(status);
