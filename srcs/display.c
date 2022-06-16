@@ -6,7 +6,7 @@
 /*   By: jsellars <jsellars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:20:37 by jsellars          #+#    #+#             */
-/*   Updated: 2022/06/14 21:55:32 by jsellars         ###   ########.fr       */
+/*   Updated: 2022/06/16 12:45:10 by jsellars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	display_moves(t_game *g)
 
 	num = ft_itoa(g->moves);
 	str = ft_strjoin("Moves: ", num);
-	y = g->map->height - 1;
-	mlx_string_put(g->mlx, g->mlx_win, 5, y * 35, 0x000000, str);
+	y = g->map->height;
+	mlx_string_put(g->mlx, g->mlx_win, 5, y * 32, 0x000000, str);
 	i = write(1, str, ft_strlen(str));
 	i = write(1, "\n", 1);
 	i++;
